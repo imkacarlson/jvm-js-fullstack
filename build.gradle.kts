@@ -52,6 +52,8 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:1.2.3")
                 implementation("io.ktor:ktor-websockets:$ktorVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.1.1")
+
+                implementation("com.google.code.gson:gson:2.8.6")
             }
         }
 
