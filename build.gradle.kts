@@ -53,6 +53,7 @@ kotlin {
                 implementation("io.ktor:ktor-websockets:$ktorVersion")
                 implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.1.1")
 
+                //added by me
                 implementation("com.google.code.gson:gson:2.8.6")
             }
         }
@@ -69,6 +70,10 @@ kotlin {
                 implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.110-kotlin-1.4.0")
                 implementation(npm("react", "16.13.1"))
                 implementation(npm("react-dom", "16.13.1"))
+
+                //added by me from i18n-POC
+                implementation("org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-1.4.10")
+                implementation(npm("node-polyglot", "2.4.0"))
             }
         }
     }
