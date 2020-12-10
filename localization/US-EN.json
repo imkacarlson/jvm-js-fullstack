@@ -1,0 +1,8 @@
+{
+  "main": {
+    "greeting": {
+      "general": "Hello World!",
+      "title": "Name of the project."
+    }
+  }
+}
