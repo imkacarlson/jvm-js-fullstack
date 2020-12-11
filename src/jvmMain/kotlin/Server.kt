@@ -8,8 +8,9 @@ import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import java.io.Reader
+import java.nio.file.Files
+import java.nio.file.Paths
 
 
 fun main() {
@@ -19,8 +20,6 @@ fun main() {
         }
         install(CORS) {
             method(HttpMethod.Get)
-            method(HttpMethod.Post)
-            method(HttpMethod.Delete)
             anyHost()
         }
         install(Compression) {
@@ -43,44 +42,42 @@ fun main() {
             }
         }
     }.start(wait = true)
+}
 
-    /*
-    val path = System.getProperty("user.dir")
+fun phrases(locale: String): GreetingItem {
+    val filePath: String
 
-    println("Working Directory = $path")
+    when (locale) {
+        "en" -> {
+            filePath = "localization/EN-US.json"
+        }
+        "es" -> {
+            filePath = "localization/ES-MX.json"
+        }
+        else -> {
+            throw NullPointerException()
+        }
+    }
 
     // https://attacomsian.com/blog/gson-read-json-file
-
     try {
         // create Gson instance
         val gson = Gson()
 
         // create a reader
-        val reader: Reader = Files.newBufferedReader(Paths.get("localization/US-EN.json"))
+        val reader: Reader = Files.newBufferedReader(Paths.get(filePath))
 
-        // convert JSON file to map
-        val map = gson.fromJson<Map<*, *>>(reader, MutableMap::class.java)
-
-        // print map entries
-        for ((key, value) in map) {
-            println(key.toString() + "=" + value)
-        }
+        // convert JSON string to User object
+        val greeting: GreetingItem = gson.fromJson(reader, GreetingItem::class.java)
 
         // close reader
         reader.close()
+
+        return greeting
     } catch (ex: Exception) {
         ex.printStackTrace()
     }
-     */
-}
 
-fun phrases(locale: String): GreetingItem {
-    if(locale == "en") {
-        var gson = Gson()
-        var test = "{\"greeting\": \"Hello World\"}"
+    throw NullPointerException()
 
-        return gson.fromJson(test, GreetingItem::class.java)
-    }else{
-        throw NullPointerException()
-    }
 }
