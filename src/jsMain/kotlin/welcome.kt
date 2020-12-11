@@ -84,5 +84,10 @@ class Welcome(props: WelcomeProps) : RComponent<WelcomeProps, WelcomeState>(prop
                 + state.cars
             }
         }
+//        div {
+//            p {
+//                + getPhrases()
+//            }
+//        }
     }
 }
